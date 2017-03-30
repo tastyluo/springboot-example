@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ljx.mapper.SystemUsersMapper">
+    <resultMap id="BaseResultMap" type="com.ljx.entity.SystemUsers">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="USERID" property="userid" jdbcType="VARCHAR"/>
+        <result column="ORGID" property="orgid" jdbcType="VARCHAR"/>
+        <result column="USERNAME" property="username" jdbcType="VARCHAR"/>
+        <result column="USERTEL" property="usertel" jdbcType="VARCHAR"/>
+        <result column="USEREMAIL" property="useremail" jdbcType="VARCHAR"/>
+        <result column="USERUNIT" property="userunit" jdbcType="VARCHAR"/>
+        <result column="PASSWORD" property="password" jdbcType="VARCHAR"/>
+        <result column="USERRIGHT" property="userright" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="UserToRoles" type="com.ljx.model.User">
+        <id column="USERID" property="userid" jdbcType="VARCHAR"/>
+        <result column="USERNAME" property="username" jdbcType="VARCHAR"/>
+        <result column="PASSWORD" property="password" jdbcType="VARCHAR"/>
+
+        <!-- 一对多的关系 -->
+        <!-- property: 指的是集合属性的值, ofType：指的是集合中元素的类型 -->
+        <collection property="roles" ofType="java.lang.String">
+            <result column="ROLE_RIGHT_ID" jdbcType="java.lang.String"/>
+        </collection>
+    </resultMap>
+
+    <select id="selectUserAndRolesByName" resultMap="UserToRoles">
+        SELECT a.USERID, a.USERNAME, a.PASSWORD, b.ROLE_RIGHT_ID
+        FROM SYSTEM_USER a, SYSTEM_ROLE_RIGHT b
+        WHERE a.USERNAME=#{username} AND a.USERRIGHT=b.ROLEID
+    </select>
+</mapper>
