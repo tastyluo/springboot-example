@@ -29,13 +29,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <!-- 移除默认logging -->
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-logging</artifactId>
-                </exclusion>
-            </exclusions>
             <!-- 移除内嵌的tomcat运行容器 -->
             <!--<exclusions>-->
             <!--<exclusion>-->
@@ -50,22 +43,17 @@
             <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
 
-        <!-- log4j springboot1.4版本后改为log4j2-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-log4j2</artifactId>
-        </dependency>
+        <!-- spring-boot-security -->
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.boot</groupId>-->
+            <!--<artifactId>spring-boot-starter-security</artifactId>-->
+        <!--</dependency>-->
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt</artifactId>
-            <version>0.7.0</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>io.jsonwebtoken</groupId>-->
+            <!--<artifactId>jjwt</artifactId>-->
+            <!--<version>0.7.0</version>-->
+        <!--</dependency>-->
 
         <!-- spring-boot-mybatis -->
         <dependency>
@@ -98,7 +86,14 @@
             <groupId>com.oracle</groupId>
             <artifactId>ojdbc6</artifactId>
             <version>11.2.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/ojdbc6-11.2.0.jar</systemPath>
         </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.oracle</groupId>-->
+            <!--<artifactId>ojdbc6</artifactId>-->
+            <!--<version>11.2.0</version>-->
+        <!--</dependency>-->
 
         <!-- SQLServer driver -->
         <!--<dependency>-->
@@ -165,6 +160,8 @@
                         <groupId>com.oracle</groupId>
                         <artifactId>ojdbc6</artifactId>
                         <version>11.2.0</version>
+                        <scope>system</scope>
+                        <systemPath>${project.basedir}/lib/ojdbc6-11.2.0.jar</systemPath>
                     </dependency>
                     <dependency>
                         <groupId>tk.mybatis</groupId>
